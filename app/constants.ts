@@ -1,3 +1,5 @@
+import {createClient} from "@supabase/supabase-js";
+
 export const firstNamesArr : string[] = [
     'Jack',
     'Olivia',
@@ -39,3 +41,5 @@ export const roles: string[] = [
     'QA Engineer',
     'Tech Lead'
 ]
+
+export const supabase = createClient('https://qmitjmnevadahrmwfkqj.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFtaXRqbW5ldmFkYWhybXdma3FqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTg1NTcyNDIsImV4cCI6MjAzNDEzMzI0Mn0.AmwvgcgBoNUlxZ_vmfKH_W08mfuxkrNtRZOO5r--g34')

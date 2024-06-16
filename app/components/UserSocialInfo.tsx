@@ -1,10 +1,11 @@
 import React from "react";
 import Image, {StaticImageData} from "next/image";
+import {Styles} from "@/app/types/types";
 
 export type UserSocialInfoProps = {
-    name: string,
-    handle: string,
-    imageURL: StaticImageData
+    name: string;
+    userName: string;
+    avatar: string;
 }
 
 let styles: Styles = {
@@ -41,19 +42,19 @@ let styles: Styles = {
     }
 }
 
-const UserSocialInfo: React.FC<UserSocialInfoProps> = ( { name, handle, imageURL }) => {
+const UserSocialInfo: React.FC<UserSocialInfoProps> = ( { name, userName, avatar }) => {
     return (
         <div style={styles.userSocialContainer}>
             <Image
                 alt={'profilePicture'}
-                src={imageURL}
+                src={avatar}
                 style={styles.profilePicture}
                 width={40}
                 height={40}
             />
             <div style={styles.userTextContainer}>
                 <p style={styles.name}> {name} </p>
-                <p style={styles.handle}> {handle} </p>
+                <p style={styles.handle}> {userName} </p>
             </div>
         </div>
     )

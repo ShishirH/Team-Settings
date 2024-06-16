@@ -3,6 +3,7 @@ import Image from "next/image";
 
 import ArrowDownIcon from '../../assets/icons/arrowDown.svg'
 import HelpIcon from '../../assets/icons/help.svg'
+import {Styles} from "@/app/types/types";
 
 const styles: Styles = {
     gridRoot: {
@@ -35,36 +36,47 @@ const styles: Styles = {
         fontWeight: 'var(--bold-font-weight)',
         lineHeight: '18px',
         textAlign: 'left',
+    },
+    checkBoxContainer: {
+        display: 'inline-flex',
+        alignItems: 'center',
+        gap: '20px'
+    },
+    icon: {
+        height: 16,
+        width: 16
     }
 }
 
 const GridHeader: React.FC = () => {
     return (
         <div className={"grid grid-cols-12 gap-1"} style={styles.gridRoot}>
-            <div>
-                <input type={"checkbox"}/>
+            <div className={"col-span-3"} style={styles.checkBoxContainer}>
+                <div>
+                    <input type={"checkbox"}/>
+                </div>
+                <div style={styles.headerText}>
+                    Name
+                </div>
             </div>
-            <div className={"col-span-3"} style={styles.headerText}>
-                Name
-            </div>
-            <div className={'flex justify-center'} style={styles.headerText}>
-                <p> Status </p>
+            <div className={'flex justify-items-start gap-1'} style={styles.headerText}>
+            <p> Status </p>
                 <Image
                     src={ArrowDownIcon}
                     alt={'status'}
                     style={styles.icon}
-                    width={9}
-                    height={9}
+                    width={16}
+                    height={16}
                 />
             </div>
-            <div className={'flex justify-center col-span-2'} style={styles.headerText}>
+            <div className={'flex justify-items-start col-span-2 gap-1'} style={styles.headerText}>
                 <p> Role </p>
                 <Image
                     src={HelpIcon}
                     alt={'helpIcon'}
                     style={styles.icon}
-                    width={9}
-                    height={9}
+                    width={16}
+                    height={16}
                 />
             </div>
             <div className={"col-span-2"} style={styles.headerText}>

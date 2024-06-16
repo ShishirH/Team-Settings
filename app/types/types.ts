@@ -6,9 +6,9 @@ export interface Styles {
 
 export type userDetails = {
     name: string;
-    handle: string;
-    imageURL: StaticImageData;
-    status: string;
+    userName: string;
+    avatar: string;
+    status: boolean;
     role: string;
     email: string;
     teams: string[];
