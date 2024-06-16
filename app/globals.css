@@ -6,6 +6,14 @@
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
+  --background-color: 255, 255, 255;
+  --default-font: 'Helvetica';
+  --bold-font-weight: 500;
+  --regular-font-weight: 400;
+  --detail-font-color: 102, 112, 133;
+  --font-size-header: '12px';
+  --background-header: 249, 250, 251;
+  --border-header-color: 234, 236, 240;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -18,12 +26,7 @@
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  background: rgb(var(--background-color));
 }
 
 @layer utilities {
