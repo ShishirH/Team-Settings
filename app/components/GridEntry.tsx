@@ -5,6 +5,7 @@ import Image from "next/image";
 import DeleteIcon from '../../assets/icons/delete.svg'
 import EditIcon from '../../assets/icons/edit.svg'
 import GreenDot from '../../assets/icons/greendot.svg'
+import {Styles, userDetails} from "@/app/types/types";
 
 type GridEntryProps = {
     userSocialInfoProps: UserSocialInfoProps
@@ -14,7 +15,8 @@ const styles: Styles = {
     gridRoot: {
         paddingLeft: '2%',
         paddingRight: '2%',
-        alignItems: 'center'
+        alignItems: 'center',
+        borderBottom: '1px solid rgb(var(--border-header-color))'
     },
     statusActive: {
         background: '#ECFDF3',
@@ -33,14 +35,14 @@ const styles: Styles = {
     }
 }
 
-const GridEntry: React.FC<GridEntryProps> = (props) => {
+const GridEntry: React.FC<userDetails> = (props) => {
     return (
         <div className={"grid grid-cols-12 gap-1"} style={styles.gridRoot}>
             <div>
                 <input type={"checkbox"}/>
             </div>
             <div className={"col-span-3"}>
-                <UserSocialInfo name={props.userSocialInfoProps.name} handle={props.userSocialInfoProps.handle} imageURL={props.userSocialInfoProps.imageURL} />
+                <UserSocialInfo name={props.name} handle={props.handle} imageURL={props.imageURL} />
             </div>
             <div className={'flex justify-center'} style={styles.statusActive}>
                 <Image
@@ -50,16 +52,16 @@ const GridEntry: React.FC<GridEntryProps> = (props) => {
                     width={8}
                     height={8}
                 />
-                <p> Active </p>
+                <p> {props.status} </p>
             </div>
             <div className={"col-span-2"} style={styles.infoText}>
-                Product Designer
+                {props.role}
             </div>
             <div className={"col-span-2"} style={styles.infoText}>
-                olivia@untitledui.com
+                {props.email}
             </div>
             <div className={"col-span-2"}>
-                Design Product Marketing
+                {props.teams}
             </div>
             <div className={"flex"}>
                 <Image

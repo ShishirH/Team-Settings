@@ -1,19 +1,18 @@
+'use client';
 import Image from "next/image";
-import React from "react";
-import UserSocialInfo, {UserSocialInfoProps} from "@/app/components/UserSocialInfo";
-import {firstNamesArr, lastNamesArr} from "@/app/constants";
+import React, {useState} from "react";
 
-import userSocial0 from '../assets/images/userSocial0.png';
-import userSocial1 from '../assets/images/userSocial1.png';
-import userSocial2 from '../assets/images/userSocial2.png';
-import userSocial3 from '../assets/images/userSocial3.png';
-import userSocial4 from '../assets/images/userSocial4.png';
 import GridEntry from "@/app/components/GridEntry";
-import userSocialInfo from "@/app/components/UserSocialInfo";
 import GridHeader from "@/app/components/GridHeader";
+import {Styles} from "@/app/types/types";
+import {userData} from "@/app/data/data";
+import PaginationBar from "@/app/components/PaginationBar";
+
+const NUMBER_OF_ITEMS_PER_PAGE = 10;
 
 export default function Home() {
 
+    const [currentPage, setCurrentPage] = useState(1);
     const styles: Styles = {
         gridRoot: {
             paddingTop: '1%',
@@ -21,25 +20,25 @@ export default function Home() {
         },
     }
 
-    const images = [userSocial0, userSocial1, userSocial2, userSocial3, userSocial4];
+    let endIndex = currentPage * NUMBER_OF_ITEMS_PER_PAGE;
+    let startIndex = (currentPage - 1) * NUMBER_OF_ITEMS_PER_PAGE;
 
     return (
       <div style={styles.gridRoot}>
           <GridHeader />
-          {Array.from({length: 10}).map((_, index) => {
-              let randomNumber = Math.floor((Math.random() * firstNamesArr.length));
-              let randomImage = Math.floor((Math.random() * 5))
-
-              let userSocialProps: UserSocialInfoProps = {
-                  name: `${firstNamesArr[randomNumber]} ${lastNamesArr[randomNumber]}`,
-                  handle: `@${firstNamesArr[randomNumber]}`,
-                  imageURL: images[randomImage]
-              }
-
-              return <GridEntry userSocialInfoProps={userSocialProps}
+          {userData.slice(startIndex, endIndex).map((userDetail, index) => {
+              return <GridEntry
                   key={index}
+                  {...userDetail}
               />
           })}
+
+          <PaginationBar
+              currentPage={currentPage}
+              numberOfPages={userData.length / NUMBER_OF_ITEMS_PER_PAGE}
+              setCurrentPage={setCurrentPage}
+          />
+
       </div>
     );
 }

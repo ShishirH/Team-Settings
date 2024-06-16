@@ -25,3 +25,17 @@ export const lastNamesArr : string[] = [
     'Morrison',
     'Loan'
 ]
+
+export const roles: string[] = [
+    'Product Designer',
+    'Product Manager',
+    'Backend Developer',
+    'Frontend Developer',
+    'Fullstack Developer',
+    'UX Designer',
+    'UX Copywriter',
+    'UI Designer',
+    'Product Manager',
+    'QA Engineer',
+    'Tech Lead'
+]
