@@ -15,7 +15,7 @@ type GridEntryProps = {
 const styles: Styles = {
     gridRoot: {
         paddingLeft: '2%',
-        paddingRight: '2%',
+        paddingRight: '1%',
         alignItems: 'center',
         borderBottom: '1px solid rgb(var(--border-header-color))',
         height: '80px'
@@ -24,26 +24,23 @@ const styles: Styles = {
         background: '#ECFDF3',
         color: '#027A48',
         borderRadius: '9999px',
-        width: 'fit-content',
-        paddingTop: '5px',
-        paddingBottom: '5px',
-        paddingLeft: '15px',
-        paddingRight: '15px'
+        width: '100px',
+        padding: '2px 8px',
+        gap: '5px'
     },
     statusInactive: {
-        background: 'orange',
-        color: 'orangered',
+        background: 'lightpink',
+        color: 'deeppink',
         borderRadius: '9999px',
         width: 'fit-content',
-        paddingTop: '5px',
-        paddingBottom: '5px',
-        paddingLeft: '15px',
-        paddingRight: '15px'
+        padding: '2px 8px',
+        gap: '5px'
     },
     infoText: {
         color: 'rgb(var(--detail-font-color))',
         fontFamily: 'var(--default-font)',
-        fontWeight: 'var(--regular-font-weight)'
+        fontWeight: 'var(--regular-font-weight)',
+        wordWrap: 'break-word'
     },
     checkBoxContainer: {
         display: 'inline-flex',
@@ -61,7 +58,7 @@ const GridEntry: React.FC<userDetails> = (props) => {
                 <UserSocialInfo name={props.name} userName={props.userName} avatar={props.avatar}/>
             </div>
             {props.status ? (
-                <div className={'flex justify-center'} style={styles.statusActive}>
+                <div className={'flex justify-center col-span-1'} style={styles.statusActive}>
                     <Image
                         src={GreenDot}
                         alt={'active'}
@@ -72,31 +69,31 @@ const GridEntry: React.FC<userDetails> = (props) => {
                     <p> Active </p>
                 </div>
             ): (
-                <div className={'flex justify-center'} style={styles.statusInactive}>
+                <div className={'flex justify-center col-span-1'} style={styles.statusInactive}>
                     <Image
                         src={RedDot}
-                        alt={'active'}
+                        alt={'inactive'}
                         style={styles.icon}
                         width={8}
                         height={8}
                     />
-                    <p> Not active </p>
+                    <p> Inactive </p>
                 </div>
             )}
-            <div className={"col-span-2"} style={styles.infoText}>
+            <div className={"col-span-2 p-10p p-5p"} style={styles.infoText}>
                 {props.role}
             </div>
             <div className={"col-span-2"} style={styles.infoText}>
                 {props.email}
             </div>
-            <div className={"inline-flex col-span-2"}>
+            <div className={"flex col-span-3 ml-4 flex-wrap"}>
                 {props.teams.map((team, index) => {
                     if (index < 3)
                         return (
                             <div key={index} style={{
                                 color: `rgb(var(--text-color-${team}))`,
                                 background: `rgb(var(--background-role-${team}))`,
-                                padding: '5px 10px',
+                                padding: '2px 8px',
                                 borderRadius: '16px',
                                 textTransform: 'capitalize',
                                 marginRight: '5px'
@@ -109,7 +106,7 @@ const GridEntry: React.FC<userDetails> = (props) => {
                             <div key={index} style={{
                                 color: `rgb(52, 64, 84)`,
                                 background: `rgb(242, 244, 247)`,
-                                padding: '5px 10px',
+                                padding: '2px 8px',
                                 borderRadius: '16px',
                                 textTransform: 'capitalize'
                             }}>
@@ -118,7 +115,7 @@ const GridEntry: React.FC<userDetails> = (props) => {
                         )
                 })}
             </div>
-            <div className={"flex col-span-2 justify-center gap-6"}>
+            <div className={"flex col-span-1 justify-center gap-6"}>
                 <Image
                     src={DeleteIcon}
                     alt={'delete'}

@@ -59,7 +59,7 @@ const GridHeader: React.FC = () => {
                     Name
                 </div>
             </div>
-            <div className={'flex justify-items-start gap-1'} style={styles.headerText}>
+            <div className={'flex justify-items-start gap-1 ml-3'} style={styles.headerText}>
             <p> Status </p>
                 <Image
                     src={ArrowDownIcon}
@@ -69,7 +69,7 @@ const GridHeader: React.FC = () => {
                     height={16}
                 />
             </div>
-            <div className={'flex justify-items-start col-span-2 gap-1'} style={styles.headerText}>
+            <div className={'flex justify-items-start col-span-2 gap-1 p-10p p-5p'} style={styles.headerText}>
                 <p> Role </p>
                 <Image
                     src={HelpIcon}
@@ -82,7 +82,7 @@ const GridHeader: React.FC = () => {
             <div className={"col-span-2"} style={styles.headerText}>
                 Email address
             </div>
-            <div className={"col-span-3"} style={styles.headerText}>
+            <div className={"col-span-3 ml-4"} style={styles.headerText}>
                 Teams
             </div>
         </div>

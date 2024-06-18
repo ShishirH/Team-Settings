@@ -49,6 +49,19 @@ input[type="checkbox"] {
   background: rgba(255, 255, 255, 1);
 }
 
+@media (max-width: 1399px) {
+  .p-10p {
+    padding: 10%;
+  }
+}
+
+@media (min-width: 1400px) {
+  .p-5p {
+    padding: 5%;
+  }
+}
+
+
 @layer utilities {
   .text-balance {
     text-wrap: balance;

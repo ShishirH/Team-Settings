@@ -54,7 +54,7 @@ const UserSocialInfo: React.FC<UserSocialInfoProps> = ( { name, userName, avatar
             />
             <div style={styles.userTextContainer}>
                 <p style={styles.name}> {name} </p>
-                <p style={styles.handle}> {userName} </p>
+                <p style={styles.handle}> {'@' + userName} </p>
             </div>
         </div>
     )
