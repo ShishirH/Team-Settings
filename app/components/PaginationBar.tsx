@@ -65,54 +65,83 @@ const PaginationBar: React.FC<NavigationBarProps> = ({currentPage, numberOfPages
 
             <div className={"inline-flex"}>
                 <div>
-                    {currentPage <= numberOfPages - 2 && (
-                        <Button
-                            onClick={() => setCurrentPage(currentPage)}
-                            style={styles.statusActive}
-                        >
-                            {currentPage + 'A'}
-                        </Button>
-                    )}
+                    {numberOfPages <= maxNumberOfPagesToDisplay ? (
+                        Array.from({length: maxNumberOfPagesToDisplay}).map((_, index) => {
+                            if (index === currentPage - 1) {
+                                return (
+                                    <Button
+                                        key={index}
+                                        onClick={() => setCurrentPage(index + 1)}
+                                        style={styles.statusActive}
+                                    >
+                                        {index + 1}
+                                    </Button>
+                                )
+                            } else {
+                                return (
+                                    <Button
+                                        key={index}
+                                        onClick={() => setCurrentPage(index + 1)}
+                                    >
+                                        {index + 1}
+                                    </Button>
+                                )
+                            }
+                        })
+                    ) : (
+                        <>
+                            {currentPage < numberOfPages - 2 && (
+                                <Button
+                                    onClick={() => setCurrentPage(currentPage)}
+                                    style={styles.statusActive}
+                                >
+                                    {currentPage + 'A'}
+                                </Button>
+                            )}
 
-                    {currentPage + 1 <= numberOfPages - 2 && (
-                        <Button
-                            onClick={() => setCurrentPage(currentPage + 1)}>
-                            {currentPage + 1 + 'B'}
-                        </Button>
-                    )}
+                            {currentPage + 1 < numberOfPages - 2 && (
+                                <Button
+                                    onClick={() => setCurrentPage(currentPage + 1)}>
+                                    {currentPage + 1 + 'B'}
+                                </Button>
+                            )}
 
-                    {currentPage + 2 <= numberOfPages - 2 && (
-                        <Button
-                            onClick={() => setCurrentPage(currentPage + 2)}>
-                            {currentPage + 2 + 'C'}
-                        </Button>
+                            {currentPage + 2 < numberOfPages - 2 && (
+                                <Button
+                                    onClick={() => setCurrentPage(currentPage + 2)}>
+                                    {currentPage + 2 + 'C'}
+                                </Button>
+                            )}
+
+                            {numberOfPages > maxNumberOfPagesToDisplay && (<Button disabled={true}>
+                                ...
+                            </Button>)}
+
+                            {currentPage <= numberOfPages - 2 && (
+                                <Button
+                                    onClick={() => setCurrentPage(numberOfPages - 2)} >
+                                    { numberOfPages - 2 + 'D'}
+                                </Button>
+                            )}
+
+                            {currentPage <= numberOfPages - 1 && (
+                                <Button
+                                    onClick={() => setCurrentPage(numberOfPages - 1)} >
+                                    { numberOfPages - 1 + 'E'}
+                                </Button>
+                            )}
+
+                            {currentPage < numberOfPages && (
+                                <Button
+                                    onClick={() => setCurrentPage(numberOfPages)} >
+                                    { numberOfPages + 'F'}
+                                </Button>
+                            )}
+                        </>
                     )}
                 </div>
 
-                {numberOfPages > maxNumberOfPagesToDisplay && (<Button disabled={true}>
-                    ...
-                </Button>)}
 
-                {currentPage <= numberOfPages - 2 && (
-                    <Button
-                        onClick={() => setCurrentPage(numberOfPages - 2)} >
-                        { numberOfPages - 2 + 'D'}
-                    </Button>
-                )}
-
-                {currentPage <= numberOfPages - 1 && (
-                    <Button
-                        onClick={() => setCurrentPage(numberOfPages - 1)} >
-                        { numberOfPages - 1 + 'E'}
-                    </Button>
-                )}
-
-                {currentPage < numberOfPages && (
-                    <Button
-                        onClick={() => setCurrentPage(numberOfPages)} >
-                        { numberOfPages + 'F'}
-                    </Button>
-                )}
             </div>
 
             <Button

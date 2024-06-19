@@ -26,6 +26,8 @@
   --text-color-qa: 40, 92, 166;
   --text-color-rnd: 54, 99, 198;
   --text-color-tech: 75, 105, 135;
+  --base-padding-left: 2%;
+  --base-padding-right: 1%;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -42,6 +44,47 @@ body {
 }
 
 input[type="checkbox"] {
+  appearance: none;
+}
+
+input [type="checkbox"]:checked {
+  background: rgba(151, 71, 255, 1) !important;
+}
+
+.checkedCheckbox:checked {
+  content: '✓' !important;
+  background: rgba(151, 71, 255, 1) !important;
+  color: white !important;
+}
+
+.form-checkbox {
+  display: none;
+}
+
+.form-checkbox + label {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  position: relative;
+}
+
+.form-checkbox:checked + label::before {
+  content: '✓';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(151, 71, 255, 1);
+  border-radius: 4px;
+  color: white;
+  text-align: center;
+  line-height: 20px;
+}
+
+.default-checkbox {
   border: 1px solid rgb(208, 213, 221);
   border-radius: 6px;
   width: 20px;

@@ -7,7 +7,6 @@ import userSocial2 from '../../assets/images/userSocial2.png';
 import userSocial3 from '../../assets/images/userSocial3.png';
 import userSocial4 from '../../assets/images/userSocial4.png';
 import {userDetails} from "@/app/types/types";
-import {guidGenerator} from "@/app/utils";
 
 const images = [userSocial0, userSocial1, userSocial2, userSocial3, userSocial4];
 

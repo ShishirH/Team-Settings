@@ -7,15 +7,19 @@ import EditIcon from '../../assets/icons/edit.svg'
 import GreenDot from '../../assets/icons/greendot.svg'
 import RedDot from '../../assets/icons/reddot.svg'
 import {Styles, userDetails} from "@/app/types/types";
+import {revisedRandId} from "@/app/utils";
 
 type GridEntryProps = {
-    userSocialInfoProps: UserSocialInfoProps
+    userDetails: userDetails;
+    setSelectedEntries: (str: string, remove?: boolean) => void;
+    selectedEntries: string[];
+    index: string;
 }
 
 const styles: Styles = {
     gridRoot: {
-        paddingLeft: '2%',
-        paddingRight: '1%',
+        paddingLeft: 'var(--base-padding-left)',
+        paddingRight: 'var(--base-padding-right)',
         alignItems: 'center',
         borderBottom: '1px solid rgb(var(--border-header-color))',
         height: '80px'
@@ -24,7 +28,7 @@ const styles: Styles = {
         background: '#ECFDF3',
         color: '#027A48',
         borderRadius: '9999px',
-        width: '100px',
+        width: 'fit-content',
         padding: '2px 8px',
         gap: '5px'
     },
@@ -45,21 +49,29 @@ const styles: Styles = {
     checkBoxContainer: {
         display: 'inline-flex',
         alignItems: 'center'
-    }
+    },
 }
 
-const GridEntry: React.FC<userDetails> = (props) => {
+const GridEntry: React.FC<GridEntryProps> = ({userDetails, setSelectedEntries, selectedEntries, index}) => {
+    let idStr = revisedRandId();
+
+    const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const isChecked = event.target.checked;
+        setSelectedEntries(index, !isChecked);
+    };
+
     return (
         <div className={"grid grid-cols-12 gap-1"} style={styles.gridRoot}>
             <div className={"col-span-3"} style={styles.checkBoxContainer}>
-                <div className={""}>
-                    <input type={"checkbox"}/>
+                <div className="flex">
+                    <input type="checkbox" id={idStr} className="form-checkbox" onChange={handleCheckboxChange}/>
+                    <label htmlFor={idStr}></label>
                 </div>
-                <UserSocialInfo name={props.name} userName={props.userName} avatar={props.avatar}/>
+                <UserSocialInfo name={userDetails.name} userName={userDetails.userName} avatar={userDetails.avatar}/>
             </div>
-            {props.status ? (
+            {userDetails.status ? (
                 <div className={'flex justify-center col-span-1'} style={styles.statusActive}>
-                    <Image
+                <Image
                         src={GreenDot}
                         alt={'active'}
                         style={styles.icon}
@@ -81,13 +93,13 @@ const GridEntry: React.FC<userDetails> = (props) => {
                 </div>
             )}
             <div className={"col-span-2 p-10p p-5p"} style={styles.infoText}>
-                {props.role}
+                {userDetails.role}
             </div>
             <div className={"col-span-2"} style={styles.infoText}>
-                {props.email}
+                {userDetails.email}
             </div>
             <div className={"flex col-span-3 ml-4 flex-wrap"}>
-                {props.teams.map((team, index) => {
+                {userDetails.teams.map((team, index) => {
                     if (index < 3)
                         return (
                             <div key={index} style={{
@@ -110,7 +122,7 @@ const GridEntry: React.FC<userDetails> = (props) => {
                                 borderRadius: '16px',
                                 textTransform: 'capitalize'
                             }}>
-                                +{props.teams.length - 3}
+                                +{userDetails.teams.length - 3}
                             </div>
                         )
                 })}

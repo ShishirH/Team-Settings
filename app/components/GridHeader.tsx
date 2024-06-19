@@ -4,6 +4,7 @@ import Image from "next/image";
 import ArrowDownIcon from '../../assets/icons/arrowDown.svg'
 import HelpIcon from '../../assets/icons/help.svg'
 import {Styles} from "@/app/types/types";
+import {revisedRandId} from "@/app/utils";
 
 const styles: Styles = {
     gridRoot: {
@@ -48,19 +49,42 @@ const styles: Styles = {
     }
 }
 
-const GridHeader: React.FC = () => {
+
+type GridHeaderProps = {
+    setSelectedEntries: (str: string, remove?: boolean) => void;
+    selectedEntries: string[]
+}
+
+const GridHeader: React.FC<GridHeaderProps> = ({ selectedEntries, setSelectedEntries}) => {
+    let idStr = revisedRandId();
+
+    const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const isChecked = event.target.checked;
+        const checkboxes = document.querySelectorAll('.form-checkbox');
+        checkboxes.forEach((checkbox) => {
+            (checkbox as HTMLInputElement).checked = isChecked;
+        });
+
+        setSelectedEntries('ALL', !isChecked);
+    };
+
     return (
         <div className={"grid grid-cols-12 gap-1"} style={styles.gridRoot}>
             <div className={"col-span-3"} style={styles.checkBoxContainer}>
-                <div>
-                    <input type={"checkbox"}/>
+                <div className="flex">
+                    <input
+                        type="checkbox" id={idStr}
+                        className="form-checkbox"
+                        onChange={handleCheckboxChange}
+                    />
+                    <label htmlFor={idStr}></label>
                 </div>
                 <div style={styles.headerText}>
                     Name
                 </div>
             </div>
             <div className={'flex justify-items-start gap-1 ml-3'} style={styles.headerText}>
-            <p> Status </p>
+                <p> Status </p>
                 <Image
                     src={ArrowDownIcon}
                     alt={'status'}
