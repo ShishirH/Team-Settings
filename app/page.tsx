@@ -114,7 +114,7 @@ export default function Home() {
                 return;
 
             for (let i = startIndex; i < endIndex; i++) {
-                arr.push(userData[i].id);
+                userData[i] && arr.push(userData[i].id);
             }
             setSelectedEntries(arr);
         } else {
@@ -131,6 +131,11 @@ export default function Home() {
             setSelectedEntries(arr)
         }
     }
+
+    useEffect(() => {
+        console.log('selectedEntries')
+        console.log(selectedEntries)
+    }, [selectedEntries]);
 
     useEffect(() => {
         prepareData().then((data) => {

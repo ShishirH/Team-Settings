@@ -66,7 +66,7 @@ const PaginationBar: React.FC<NavigationBarProps> = ({currentPage, numberOfPages
             <div className={"inline-flex"}>
                 <div>
                     {numberOfPages <= maxNumberOfPagesToDisplay ? (
-                        Array.from({length: maxNumberOfPagesToDisplay}).map((_, index) => {
+                        Array.from({length: numberOfPages}).map((_, index) => {
                             if (index === currentPage - 1) {
                                 return (
                                     <Button
