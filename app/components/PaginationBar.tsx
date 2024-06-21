@@ -95,21 +95,21 @@ const PaginationBar: React.FC<NavigationBarProps> = ({currentPage, numberOfPages
                                     onClick={() => setCurrentPage(currentPage)}
                                     style={styles.statusActive}
                                 >
-                                    {currentPage + 'A'}
+                                    {currentPage}
                                 </Button>
                             )}
 
                             {currentPage + 1 < numberOfPages - 2 && (
                                 <Button
                                     onClick={() => setCurrentPage(currentPage + 1)}>
-                                    {currentPage + 1 + 'B'}
+                                    {currentPage + 1}
                                 </Button>
                             )}
 
                             {currentPage + 2 < numberOfPages - 2 && (
                                 <Button
                                     onClick={() => setCurrentPage(currentPage + 2)}>
-                                    {currentPage + 2 + 'C'}
+                                    {currentPage + 2}
                                 </Button>
                             )}
 
@@ -120,21 +120,21 @@ const PaginationBar: React.FC<NavigationBarProps> = ({currentPage, numberOfPages
                             {currentPage <= numberOfPages - 2 && (
                                 <Button
                                     onClick={() => setCurrentPage(numberOfPages - 2)} >
-                                    { numberOfPages - 2 + 'D'}
+                                    { numberOfPages - 2}
                                 </Button>
                             )}
 
                             {currentPage <= numberOfPages - 1 && (
                                 <Button
                                     onClick={() => setCurrentPage(numberOfPages - 1)} >
-                                    { numberOfPages - 1 + 'E'}
+                                    { numberOfPages - 1}
                                 </Button>
                             )}
 
                             {currentPage <= numberOfPages && (
                                 <Button
                                     onClick={() => setCurrentPage(numberOfPages)} >
-                                    { numberOfPages + 'F'}
+                                    { numberOfPages}
                                 </Button>
                             )}
                         </>
