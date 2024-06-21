@@ -4,7 +4,7 @@ import {Styles} from "@/app/types/types";
 import Image from "next/image";
 import PreviousIcon from "@/assets/icons/previous.svg";
 import NextIcon from "@/assets/icons/next.svg";
-import Button from "@/app/components/Button";
+import Button from "@/components/Button";
 
 const styles: Styles = {
     gridRoot: {

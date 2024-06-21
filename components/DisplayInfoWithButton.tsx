@@ -1,5 +1,5 @@
 import {Styles} from "@/app/types/types";
-import Button from "@/app/components/Button";
+import Button from "@/components/Button";
 
 type DisplayInfoProps = {
     title: string;

@@ -2,13 +2,13 @@
 import Image from "next/image";
 import React, {useEffect, useState} from "react";
 
-import GridEntry from "@/app/components/GridEntry";
-import GridHeader from "@/app/components/GridHeader";
+import GridEntry from "@/components/GridEntry";
+import GridHeader from "@/components/GridHeader";
 import {Styles, userDetails} from "@/app/types/types";
-import PaginationBar from "@/app/components/PaginationBar";
+import PaginationBar from "@/components/PaginationBar";
 import {prepareData} from "@/app/data/data";
-import DisplayInfoWithButton from "@/app/components/DisplayInfoWithButton";
-import ConfirmationModal from "@/app/components/ConfirmationModal";
+import DisplayInfoWithButton from "@/components/DisplayInfoWithButton";
+import ConfirmationModal from "@/components/ConfirmationModal";
 import {supabase} from "@/app/constants";
 import {userInfo} from "node:os";
 

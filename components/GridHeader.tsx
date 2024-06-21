@@ -1,8 +1,8 @@
 import React, {useState} from "react";
 import Image from "next/image";
 
-import ArrowDownIcon from '../../assets/icons/arrowDown.svg'
-import HelpIcon from '../../assets/icons/help.svg'
+import ArrowDownIcon from '../assets/icons/arrowDown.svg'
+import HelpIcon from '../assets/icons/help.svg'
 import {Styles} from "@/app/types/types";
 import {revisedRandId} from "@/app/utils";
 

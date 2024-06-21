@@ -1,11 +1,11 @@
 import React from "react";
-import UserSocialInfo, {UserSocialInfoProps} from "@/app/components/UserSocialInfo";
+import UserSocialInfo, {UserSocialInfoProps} from "@/components/UserSocialInfo";
 import Image from "next/image";
 
-import DeleteIcon from '../../assets/icons/delete.svg'
-import EditIcon from '../../assets/icons/edit.svg'
-import GreenDot from '../../assets/icons/greendot.svg'
-import RedDot from '../../assets/icons/reddot.svg'
+import DeleteIcon from '../assets/icons/delete.svg'
+import EditIcon from '../assets/icons/edit.svg'
+import GreenDot from '../assets/icons/greendot.svg'
+import RedDot from '../assets/icons/reddot.svg'
 import {Styles, userDetails} from "@/app/types/types";
 import {revisedRandId} from "@/app/utils";
 

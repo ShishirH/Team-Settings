@@ -1,9 +1,9 @@
 import React, {useState} from "react";
 import {Styles} from "@/app/types/types";
-import Button from "@/app/components/Button";
+import Button from "@/components/Button";
 import Image from "next/image";
 
-import ConfirmationCheck from '../../assets/icons/confirmationCheck.svg';
+import ConfirmationCheck from '../assets/icons/confirmationCheck.svg';
 
 const styles: Styles = {
     root: {
