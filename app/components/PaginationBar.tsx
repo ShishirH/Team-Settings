@@ -88,7 +88,39 @@ const PaginationBar: React.FC<NavigationBarProps> = ({currentPage, numberOfPages
                                 )
                             }
                         })
-                    ) : (
+                    ) : (currentPage > (numberOfPages - maxNumberOfPagesToDisplay)) ? (
+                        <>
+                            {numberOfPages > maxNumberOfPagesToDisplay && (<Button disabled={true}>
+                                ...
+                            </Button>)}
+
+                            {Array.from({length: maxNumberOfPagesToDisplay}).map((_, i) => {
+                                let index = (numberOfPages - maxNumberOfPagesToDisplay) + i;
+                                if (index === currentPage - 1) {
+                                    return (
+                                        <Button
+                                            key={index}
+                                            onClick={() => setCurrentPage(index + 1)}
+                                            style={styles.statusActive}
+                                        >
+                                            {index + 1}
+                                        </Button>
+                                    )
+                                } else {
+                                    return (
+                                        <Button
+                                            key={index}
+                                            onClick={() => setCurrentPage(index + 1)}
+                                        >
+                                            {index + 1}
+                                        </Button>
+                                    )
+                                }
+                            })
+                            }
+
+                        </>
+                        ) : (
                         <>
                             {currentPage < numberOfPages - 2 && (
                                 <Button

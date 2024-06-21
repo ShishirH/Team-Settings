@@ -7,9 +7,11 @@ type DisplayInfoProps = {
     btnText: string;
     btnOnClick: () => void;
     btnDisabled?: boolean;
+    searchTerm?: string;
+    setSearchTerm?: (term: string) => void;
 }
 
-const DisplayInfoWithButton: React.FC<DisplayInfoProps> = ({title, displayText, btnText, btnOnClick, btnDisabled}) => {
+const DisplayInfoWithButton: React.FC<DisplayInfoProps> = ({title, displayText, btnText, btnOnClick, btnDisabled, setSearchTerm, searchTerm}) => {
 
     const styles: Styles = {
         root: {
@@ -47,17 +49,20 @@ const DisplayInfoWithButton: React.FC<DisplayInfoProps> = ({title, displayText, 
 
     return (
         <div className={"grid grid-cols-12 gap-1 items-center"} style={styles.root}>
-            <div className={"inline-flex col-span-10 gap-2"} style={{height: '30px'}}>
-                <p style={styles.title}>
-                    { title }
-                </p>
+            <div className={"inline-flex col-span-8 gap-2 justify-between"} style={{height: '30px'}}>
+                <div className={"inline-flex"} >
+                    <p style={styles.title}>
+                        {title}
+                    </p>
 
-                <p className={"inline-flex items-center justify-center"} style={styles.displayText}>
-                    { displayText }
-                </p>
+                    <p className={"inline-flex items-center justify-center"} style={styles.displayText}>
+                        {displayText}
+                    </p>
+                </div>
+                {setSearchTerm && <input className={""} type={"text"} placeholder={"Search"} value={searchTerm} onChange={(e) => setSearchTerm(e.target.value.toUpperCase())}/>}
             </div>
 
-            <div className={"col-span-2 justify-self-end"}>
+            <div className={"col-span-4 justify-self-end"}>
                 <Button disabled={btnDisabled} className={"confirmButton"} onClick={() => btnOnClick()} style={styles.btn}>
                     { btnText }
                 </Button>

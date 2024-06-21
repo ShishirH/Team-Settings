@@ -28,10 +28,13 @@ export default function Home() {
     const [email, setEmail] = useState<string>('');
     const [selectedRole, setSelectedRole] = useState<string>('');
     const [userData, setUserData] = useState<userDetails[]>([]);
+    const [allUserData, setAllUserData] = useState<userDetails[]>([]);
     const [selectedEntries, setSelectedEntries] = useState<number[]>([]);
     const [showModal, setShowModal] = useState(false);
     const [showEditModal, setShowEditModal] = useState(false);
     const [isChecked, setIsChecked] = useState(false);
+    const [searchTerm, setSearchTerm] = useState<string>('');
+
 
     let endIndex = currentPage * NUMBER_OF_ITEMS_PER_PAGE;
     let startIndex = (currentPage - 1) * NUMBER_OF_ITEMS_PER_PAGE;
@@ -50,6 +53,7 @@ export default function Home() {
 
         setSelectedEntries([]);
         setIsChecked(false);
+        setSearchTerm('');
 
         setTimeout(() => {
             setShowModal(false);
@@ -133,13 +137,32 @@ export default function Home() {
     }
 
     useEffect(() => {
-        console.log('selectedEntries')
-        console.log(selectedEntries)
-    }, [selectedEntries]);
+        if (searchTerm === '') {
+            setUserData(allUserData);
+        } else {
+            setUserData(userData.filter((row) => {
+                if (row.name.toUpperCase().includes(searchTerm) ||
+                    row.userName.toUpperCase().includes(searchTerm) ||
+                    row.role.toUpperCase().includes(searchTerm) ||
+                    row.email.toUpperCase().includes(searchTerm)
+                ) {
+                    return true;
+                }
+
+                for (let team of row.teams) {
+                    if (team.toUpperCase().includes(searchTerm))
+                        return true;
+                }
+                return false;
+            }))
+            setCurrentPage(1);
+        }
+    }, [searchTerm]);
 
     useEffect(() => {
         prepareData().then((data) => {
             setUserData([...data]);
+            setAllUserData([...data])
         })
 
         const changes = supabase.channel('custom-all-channel')
@@ -149,6 +172,7 @@ export default function Home() {
                 (payload) => {
                     prepareData().then((data) => {
                         setUserData([...data]);
+                        setAllUserData([...data]);
                     })
                 }
             )
@@ -188,6 +212,8 @@ export default function Home() {
               btnText={'Delete Selected'}
               btnOnClick={() => setShowModal(true)}
               btnDisabled={!(selectedEntries.length > 0)}
+              searchTerm={searchTerm}
+              setSearchTerm={setSearchTerm}
           />
           <GridHeader
               setSelectedEntries={handleSelectedEntries}
@@ -244,7 +270,7 @@ export default function Home() {
           <PaginationBar
               currentPage={currentPage}
               maxNumberOfPagesToDisplay={6}
-              numberOfPages={userData.length / NUMBER_OF_ITEMS_PER_PAGE}
+              numberOfPages={Math.ceil(userData.length / NUMBER_OF_ITEMS_PER_PAGE)}
               setCurrentPage={setCurrentPage}
           />
       </div>
