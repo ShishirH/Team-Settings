@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import Image from "next/image";
 
 import ArrowDownIcon from '../../assets/icons/arrowDown.svg'
@@ -51,21 +51,18 @@ const styles: Styles = {
 
 
 type GridHeaderProps = {
-    setSelectedEntries: (str: string, remove?: boolean) => void;
-    selectedEntries: string[]
+    setSelectedEntries: (id: number, remove?: boolean) => void;
+    selectedEntries: number[];
+    isChecked: boolean;
+    toggleIsChecked: () => void;
 }
 
-const GridHeader: React.FC<GridHeaderProps> = ({ selectedEntries, setSelectedEntries}) => {
+const GridHeader: React.FC<GridHeaderProps> = ({ selectedEntries, setSelectedEntries, isChecked, toggleIsChecked}) => {
     let idStr = revisedRandId();
 
     const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const isChecked = event.target.checked;
-        const checkboxes = document.querySelectorAll('.form-checkbox');
-        checkboxes.forEach((checkbox) => {
-            (checkbox as HTMLInputElement).checked = isChecked;
-        });
-
-        setSelectedEntries('ALL', !isChecked);
+        toggleIsChecked();
+        setSelectedEntries(-1, isChecked);
     };
 
     return (
@@ -75,6 +72,7 @@ const GridHeader: React.FC<GridHeaderProps> = ({ selectedEntries, setSelectedEnt
                     <input
                         type="checkbox" id={idStr}
                         className="form-checkbox"
+                        checked={isChecked}
                         onChange={handleCheckboxChange}
                     />
                     <label htmlFor={idStr}></label>

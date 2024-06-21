@@ -131,7 +131,7 @@ const PaginationBar: React.FC<NavigationBarProps> = ({currentPage, numberOfPages
                                 </Button>
                             )}
 
-                            {currentPage < numberOfPages && (
+                            {currentPage <= numberOfPages && (
                                 <Button
                                     onClick={() => setCurrentPage(numberOfPages)} >
                                     { numberOfPages + 'F'}

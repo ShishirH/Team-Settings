@@ -5,6 +5,7 @@ export interface Styles {
 }
 
 export type userDetails = {
+    id: number;
     name: string;
     userName: string;
     avatar: string;

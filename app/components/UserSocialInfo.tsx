@@ -47,7 +47,7 @@ const UserSocialInfo: React.FC<UserSocialInfoProps> = ( { name, userName, avatar
         <div style={styles.userSocialContainer}>
             <Image
                 alt={'profilePicture'}
-                src={avatar}
+                src={avatar || 'https://i.pravatar.cc/150?u=sofiawelch'}
                 style={styles.profilePicture}
                 width={40}
                 height={40}

@@ -10,10 +10,12 @@ import {userDetails} from "@/app/types/types";
 
 const images = [userSocial0, userSocial1, userSocial2, userSocial3, userSocial4];
 
+
 export const prepareData = async () => {
     let {data, error} = await supabase
         .from('UserInfo')
         .select('*')
+        .order('id')
 
     let userData: userDetails[] = [];
     if (data) {
@@ -28,6 +30,7 @@ export const prepareData = async () => {
             }
 
             let userDetail: userDetails = {
+                id: row.id,
                 name: row.name,
                 userName: row.userName,
                 avatar: row.avatar,

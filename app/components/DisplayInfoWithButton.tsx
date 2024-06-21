@@ -6,9 +6,10 @@ type DisplayInfoProps = {
     displayText: string;
     btnText: string;
     btnOnClick: () => void;
+    btnDisabled?: boolean;
 }
 
-const DisplayInfoWithButton: React.FC<DisplayInfoProps> = ({title, displayText, btnText, btnOnClick}) => {
+const DisplayInfoWithButton: React.FC<DisplayInfoProps> = ({title, displayText, btnText, btnOnClick, btnDisabled}) => {
 
     const styles: Styles = {
         root: {
@@ -37,7 +38,8 @@ const DisplayInfoWithButton: React.FC<DisplayInfoProps> = ({title, displayText, 
             borderRadius: '8px',
             height: '40px',
             padding: '10px 16px',
-            background: 'rgba(166, 138, 229, 1)',
+            display: 'flex',
+            alignItems: 'center',
             boxShadow: '0px 1px 2px 0px rgba(16, 24, 40, 0.05)',
             color: '#FFF'
         }
@@ -56,7 +58,7 @@ const DisplayInfoWithButton: React.FC<DisplayInfoProps> = ({title, displayText, 
             </div>
 
             <div className={"col-span-2 justify-self-end"}>
-                <Button onClick={() => btnOnClick()} style={styles.btn}>
+                <Button disabled={btnDisabled} className={"confirmButton"} onClick={() => btnOnClick()} style={styles.btn}>
                     { btnText }
                 </Button>
             </div>

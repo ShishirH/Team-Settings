@@ -70,6 +70,25 @@ input [type="checkbox"]:checked {
   position: relative;
 }
 
+input[type="text"], input[type="email"], select {
+  border: 1px solid rgba(208, 213, 221, 1);
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-family: var(--default-font);
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus {
+  border: 1px solid rgba(151, 71, 255, 1) !important;
+}
+
+label {
+  font-family: var(--default-font);
+  padding-top: 4%;
+  padding-bottom: 1.5%;
+  font-size: 14px;
+}
+
 .form-checkbox:checked + label::before {
   content: '✓';
   position: absolute;
@@ -102,6 +121,39 @@ input [type="checkbox"]:checked {
   .p-5p {
     padding: 5%;
   }
+}
+
+.confirmButton {
+  background: rgba(127, 86, 217, 1);
+  color: #FFF;
+}
+
+.confirmButton:hover {
+  background: rgba(70, 33, 153, 1);
+}
+
+.confirmButton:disabled {
+  background: rgba(166, 138, 229, 1);
+}
+
+.regularButton {
+  background: rgba(255, 255, 255, 1);
+  color: rgb(var(--foreground-rgb));
+  border: 1px solid rgba(208, 213, 221, 1);
+}
+
+.regularButton:hover {
+  background: rgba(208, 213, 221, 1);
+}
+
+.iconContainer {
+  width: 20px;
+  height: 20px;
+}
+
+.iconContainer:hover .icon {
+  color: rgba(151, 71, 255, 1) !important;
+  fill: rgba(151, 71, 255, 1) !important;
 }
 
 
